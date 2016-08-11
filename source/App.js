@@ -1,41 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
+import KanbanBoard from './components/KanbanBoard/KanbanBoard';
 
-
-class Hello extends Component{
-  render(){
-    var place = "World";
-    return(
-      <h1>Hello {place}</h1>
-    );
-  };
-}
-
-
-// Parent Component
-class GroceryList extends Component{
-  render(){
-    return(
-      <ul>
-        <ListItem quantiti="1" name="Bread" />
-        <ListItem quantiti="6" name="Eggs" />
-        <ListItem quantiti="2" name="Milk" />
-      </ul>
-    );
+let cardsList = [
+  {
+    id: 1,
+    title: 'Read the book',
+    description: 'I should read the whole book',
+    status: 'in-progress',
+    tasks: []
+  },
+  {
+    id: 2,
+    title: 'Write some code',
+    description: 'Code along with the samples in the book',
+    status: 'todo',
+    tasks: [
+      {
+        id: 1,
+        name: 'ContactList Example',
+        done: true
+      },
+      {
+        id: 2,
+        name: 'Kaban Example',
+        done: false
+      },
+      {
+        id: 3,
+        name: 'My own experiments',
+        done: false
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Something else',
+    description: 'I finsihed',
+    status: 'done',
+    tasks: []
   }
-}
+];
 
-
-// Child Component
-class ListItem extends Component{
-  render(){
-    return(
-      <li>
-        {this.props.quantitiy} x {this.props.name}
-      </li>
-    );
-  }
-}
-
-
-
-React.render(<GroceryList />, document.getElementById('root'));
+React.render(<KanbanBoard cards={cardList} />, document.getElementById('root'));
