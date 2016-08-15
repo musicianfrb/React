@@ -1,7 +1,7 @@
 import React from 'react';
 import KanbanBoard from './components/KanbanBoard/KanbanBoard';
 
-let cardsList = [
+let cardList = [
   {
     id: 1,
     title: 'Read the book',
