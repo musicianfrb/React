@@ -1,44 +1,40 @@
-import React from 'react';
-import KanbanBoard from './components/KanbanBoard/KanbanBoard';
+import React, {Component} from 'react';
+import { render } from 'react-dom';
 
-let cardList = [
-  {
-    id: 1,
-    title: 'Read the book',
-    description: 'I should read the whole book',
-    status: 'in-progress',
-    tasks: []
-  },
-  {
-    id: 2,
-    title: 'Write some code',
-    description: 'Code along with the samples in the book',
-    status: 'todo',
-    tasks: [
-      {
-        id: 1,
-        name: 'ContactList Example',
-        done: true
-      },
-      {
-        id: 2,
-        name: 'Kaban Example',
-        done: false
-      },
-      {
-        id: 3,
-        name: 'My own experiments',
-        done: false
-      }
-    ]
-  },
-  {
-    id: 3,
-    title: 'Something else',
-    description: 'I finsihed',
-    status: 'done',
-    tasks: []
+// first we import some components
+import { Router, Route, Link } from 'react-router';
+
+import About from './components/About/About';
+import Home from './components/Home/Home';
+import Repos from './components/Repos/Repos';
+
+
+
+class App extends Component {
+  render(){
+    return (
+      <div>
+        <header>App</header>
+        <menu>
+          <ul>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/repos">Repos</Link></li>
+          </ul>
+        </menu>
+        {this.props.children}
+      </div>
+    )
   }
-];
+}
 
-React.render(<KanbanBoard cards={cardList} />, document.getElementById('root'));
+React.render((
+  <Router>
+    <Route path="/" component={App}>
+      <Route path="about" component={About}/>
+      <Route path="repos" component={Repos}/>
+    </Route>
+  </Router>
+), document.getElementById('root'));
+
+
+
